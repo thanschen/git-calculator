@@ -20,6 +20,7 @@
 
         <div class="display-container">
             <span class="display-label">YOUR CALCULATION</span>
+            <div id="expressionDisplay"></div>
             <input type="text" id="display" value="0" readonly aria-label="Calculator display">
         </div>
 
@@ -42,8 +43,23 @@
             <button type="button" onclick="addValue('-')" class="operator">−</button>
             <button type="button" onclick="addValue('*')" class="operator">×</button>
             <button type="button" onclick="addValue('/')" class="operator">÷</button>
+            <button type="button" onclick="addValue('.')">.</button>
+            <button type="button" onclick="scientificOperation('%')" class="operator">%</button>
+            <button type="button" onclick="scientificOperation('+/-')" class="operator">+/-</button>
+            <button type="button" onclick="scientificOperation('√')" class="operator">√</button>
+            <button type="button" onclick="scientificOperation('x²')" class="operator">x²</button>
             <button type="button" onclick="calculate()" class="equals">=</button>
         </div>
+        <!-- index.html: Add before <div class="calculator-footer"> -->
+        <details class="history-panel" open>
+            <summary>Calculation History</summary>
+            <p class="history-hint">Click a calculation to reuse its result.</p>
+            <button type="button" id="clearHistory" onclick="clearHistory()" disabled>
+                Clear History
+            </button>
+            <p id="historyEmpty">No calculations yet.</p>
+            <ul id="historyList" aria-label="Previous calculations"></ul>
+        </details>
 
         <div class="calculator-footer">
             <button id="themeToggle" type="button">

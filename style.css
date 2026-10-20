@@ -327,3 +327,53 @@ button:focus-visible {
         transition: none !important;
     }
 }
+
+/* Append to style.css so longer error messages remain readable. */
+#display {
+    font-size: clamp(12px, 4vw, 20px);
+}
+
+#display:has(+ *) {
+    min-width: 0;
+}
+
+#expressionDisplay {
+    min-height: 24px;
+    margin-bottom: 8px;
+    color: var(--muted-color);
+    text-align: right;
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+/* Keep history compact and scroll when more entries are added. */
+#historyList {
+    display: block;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 12px 0 0;
+    padding: 4px 8px 4px 4px;
+    list-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--display-bg);
+}
+
+#historyList li {
+    margin-bottom: 8px;
+}
+
+#historyList button {
+    width: 100%;
+    height: auto;
+    min-height: 30px;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.history-panel {
+    margin-top: 30px;
+    padding-top: 20px;
+}
