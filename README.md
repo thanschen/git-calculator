@@ -25,7 +25,21 @@ A simple calculator built using HTML, CSS and JavaScript.
     - **Square Root Functionality:** Instantly compute the square root of non-negative numbers.
     - **Squaring Operation:** Effortlessly calculate the square of a number.
 - Error handling
-- Invalid input handling
+    -Prevent division by zero.
+    Reject invalid mathematical operations.
+    Prevent square root calculations on negative numbers in a real-number calculator.
+    Handle invalid or incomplete input gracefully.
+    Prevent memory operations from using invalid display values.
+    Avoid unexpected NaN or Infinity results.
+
+### Memory Operations:
+
+- **MC (Memory Clear):** Clears the stored memory value (sets to 0).
+- **MR (Memory Recall):** Retrieves and displays the stored memory value.
+- **M+ (Memory Add):** Adds the current display value to the memory value.
+- **M- (Memory Subtract):** Subtracts the current display value from the memory value.
+
+## Requirement: Basic Operations, Scientific Operations, and Memory Operations must work correctly with the Calculation History feature.
 
 ## Technologies Used
 

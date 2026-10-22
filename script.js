@@ -241,3 +241,135 @@ themeToggle.addEventListener("click", function () {
         themeToggle.textContent = "Switch to Dark Mode";
     }
 });
+
+// Store memory until MC is pressed or the page reloads.
+let memoryValue = 0;
+
+/*function memoryOperation(operation) {
+
+    if (operation === "MC") {
+        memoryValue = 0;
+        clearDisplay();
+        return;
+    }
+
+    if (operation === "MR") {
+        clearDisplay();
+        display.value = String(memoryValue);
+
+        // A number starts fresh; an operator continues from recalled memory.
+        resultShown = true;
+        return;
+    }
+
+    if (operation !== "M+" && operation !== "M-") {
+        return;
+    }
+
+    if (hasError) {
+        return;
+    }
+
+    const value = Number(display.value);
+
+    // Require a number; unfinished expressions must be calculated first.
+    if (display.value.trim() === "" || !Number.isFinite(value)) {
+        showError("Enter a valid number");
+        return;
+    }
+
+    const newMemory = operation === "M+"
+        ? memoryValue + value
+        : memoryValue - value;
+
+    // Preserve existing memory if the new value is too large.
+    if (!Number.isFinite(newMemory)) {
+        showError("Memory value too large");
+        return;
+    }
+
+    memoryValue = newMemory;
+    // Show the updated memory total immediately.
+    document.getElementById("expressionDisplay").textContent = "";
+    display.value = String(memoryValue);
+    resultShown = true;
+}
+*/
+function memoryOperation(operation) {
+    if (operation === "MC") {
+        memoryValue = 0;
+        clearDisplay();
+        return;
+    }
+
+    if (operation === "MR") {
+        clearDisplay();
+        display.value = String(memoryValue);
+        resultShown = true;
+        return;
+    }
+
+    if (operation !== "M+" && operation !== "M-") {
+        return;
+    }
+
+    if (hasError) {
+        return;
+    }
+
+    const value = Number(display.value);
+
+    if (display.value.trim() === "" || !Number.isFinite(value)) {
+        showError("Enter a valid number");
+        return;
+    }
+
+    const newMemory = operation === "M+"
+        ? memoryValue + value
+        : memoryValue - value;
+
+    if (!Number.isFinite(newMemory)) {
+        showError("Memory value too large");
+        return;
+    }
+
+    const expression = `${memoryValue} ${operation === "M+" ? "+" : "-"} ${value}`;
+    memoryValue = newMemory;
+    document.getElementById("expressionDisplay").textContent = expression;
+    display.value = String(memoryValue);
+    resultShown = true;
+
+    // Save M+ and M- calculations to history.
+    calculationHistory.unshift({ expression, result: memoryValue });
+    renderHistory();
+}
+
+document.addEventListener("keydown", function (event) {
+    const key = event.key;
+    // script.js: Add these memory-related keydown handlers.
+
+    if (key === "m" || key === "M") {
+        event.preventDefault();
+        memoryOperation("MR");
+        return;
+    }
+
+    if (key === "c" || key === "C") {
+        // "C" alone now clears memory (MC) only when nothing else is displayed.
+        if (display.value === "0" && !hasError) {
+            event.preventDefault();
+            memoryOperation("MC");
+        }
+        return;
+    }
+
+    if (key === "+") {
+        // "+" alone now recalls memory (MR) before adding.
+        if (display.value === "0" && !hasError) {
+            event.preventDefault();
+            memoryOperation("MR");
+        }
+    }
+});
+// Then fall through to the normal number/operator logic.
+// ... existing keydown logic (addValue, scientificOperation, etc.)
