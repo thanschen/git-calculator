@@ -109,12 +109,13 @@ Pressing MR displays 15.
 ## Error Handling
 
 -Prevent division by zero.
+![Calculator Error Handling](screenshots/calculator-division-by-zero-error.png)
 -Reject invalid mathematical operations.
+![Calculator Error Handling](screenshots/calculator-invalid-operations-error.png)
 -Prevent square root calculations on negative numbers in a real-number calculator.
 -Handle invalid or incomplete input gracefully.
 Prevent memory operations from using invalid display values.
 Avoid unexpected NaN or Infinity results.
-
 ## Testing and Acceptance Criteria
 
 -All basic arithmetic functions work correctly.
@@ -123,7 +124,7 @@ Avoid unexpected NaN or Infinity results.
 -Historical results can be reused in new calculations.
 -M+ and M- work correctly with restored historical values.
 -Negative and decimal results are handled correctly.
--Calculation history remains accurate.
+-Calculation history remains accurate.gi
 -Unit tests and regression tests pass.
 -Existing calculator functionality remains unchanged after updates.
 
